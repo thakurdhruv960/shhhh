@@ -1,3 +1,8 @@
-# ajao-lelo-mera
-at the en just type miss2+raspberrypie+cam1+cam2
-and then in new terminal type: /usr/bin/python3 /home/prem/Vegh/rpi/miss2_start.py
+~/Prem/ajao-lelo-mera/launch.sh 
+then once everything open ups
+python3 ~/Prem/ajao-lelo-mera/autonomy/behaviors/mission_runner.py 
+then on mavlink terminal -
+mode guided
+arm throttle
+takeoff 5
+and the mission starts till before entering of the corridor
