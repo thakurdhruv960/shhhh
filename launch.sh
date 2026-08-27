@@ -164,11 +164,8 @@ pkill -9 -f "sim_vehicle.py" 2>/dev/null || true
 pkill -9 -f "mavproxy.py" 2>/dev/null || true
 pkill -9 -f "arducopter" 2>/dev/null || true
 
-pkill -9 -f "cam1_viewer.py" 2>/dev/null || true
-pkill -9 -f "cam2_viewer.py" 2>/dev/null || true
 
-pkill -9 -f "miss2_start.py" 2>/dev/null || true
-
+pkill -9 -f "mission_runner.py" 2>/dev/null || true
 sleep 2
 
 echo "[OK] Old processes cleaned."
@@ -244,17 +241,15 @@ echo "[OK] ArduPilot + MAVProxy started."
 
 # Give SITL + MAVProxy time to start
 sleep 8
-
-
 # ============================================================
-# TERMINAL 3 — DOWNWARD CAMERA
+# TERMINAL 5 — MISSION RUNNER (AUTONOMY)
 # ============================================================
 
 echo ""
-echo "[4/5] Starting CAM1..."
+echo "[6/6] Starting Mission Runner..."
 
 gnome-terminal \
-    --title="3 - CAM1 Downward" \
+    --title="5 - Mission Runner" \
     -- bash -c "
         source '$VENV/bin/activate'
 
@@ -264,54 +259,20 @@ gnome-terminal \
 
         echo ''
         echo '=============================================='
-        echo '       CAM1 - DOWNWARD CAMERA'
+        echo '       AUTONOMOUS MISSION RUNNER'
         echo '=============================================='
         echo ''
 
-        python3 scripts/cam1_viewer.py
+        python3 autonomy/behaviors/mission_runner.py
 
         echo ''
-        echo 'CAM1 closed.'
+        echo 'Mission Runner closed.'
         exec bash
     "
 
-echo "[OK] CAM1 started."
+echo "[OK] Mission Runner started."
 
 sleep 2
-
-
-# ============================================================
-# TERMINAL 4 — FORWARD CAMERA
-# ============================================================
-
-echo ""
-echo "[5/5] Starting CAM2..."
-
-gnome-terminal \
-    --title="4 - CAM2 Forward" \
-    -- bash -c "
-        source '$VENV/bin/activate'
-
-        export PYTHONPATH='$GZ_PYTHON_PATH:\${PYTHONPATH:-}'
-
-        cd '$REPO'
-
-        echo ''
-        echo '=============================================='
-        echo '       CAM2 - FORWARD CAMERA'
-        echo '=============================================='
-        echo ''
-
-        python3 scripts/cam2_viewer.py
-
-        echo ''
-        echo 'CAM2 closed.'
-        exec bash
-    "
-
-echo "[OK] CAM2 started."
-
-sleep 3
 
 
 # ============================================================
@@ -320,21 +281,21 @@ sleep 3
 
 echo ""
 echo "=========================================================="
-echo "              ALL 4 TERMINALS STARTED"
+echo "               ALL 5 TERMINALS STARTED"
 echo "=========================================================="
 echo ""
 echo "  [1] Gazebo MISS2"
 echo "  [2] ArduPilot + MAVProxy"
 echo "  [3] CAM1 Downward"
 echo "  [4] CAM2 Forward"
-echo "  
+echo "  [5] Mission Runner"
 echo ""
 echo "  Repo:"
 echo "  $REPO"
 echo ""
 echo "  Venv:"
 echo "  $VENV"
-autonomy/behaviors/hybrid_tracker.pyecho ""
+echo ""
 echo "  MAVLink:"
 echo "  127.0.0.1:$MAVLINK_PORT"
 echo ""
