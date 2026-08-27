@@ -315,49 +315,19 @@ sleep 3
 
 
 # ============================================================
-# TERMINAL 5 — PYTHON MISSION
-# ============================================================
-
-echo ""
-echo "[FINAL] Starting Python mission..."
-
-gnome-terminal \
-    --title="5 - MISS2 Python Mission" \
-    -- bash -c "
-        source '$VENV/bin/activate'
-
-        export PYTHONPATH='$GZ_PYTHON_PATH:\${PYTHONPATH:-}'
-
-        cd '$REPO'
-
-        echo ''
-        echo '=============================================='
-        echo '       MISS2 PYTHON MISSION'
-        echo '=============================================='
-        echo ''
-
-        python3 automation_ki_baat_cheet/miss2_start.py
-
-        echo ''
-        echo 'Python mission closed.'
-        exec bash
-    "
-
-
-# ============================================================
 # COMPLETE
 # ============================================================
 
 echo ""
 echo "=========================================================="
-echo "              ALL 5 TERMINALS STARTED"
+echo "              ALL 4 TERMINALS STARTED"
 echo "=========================================================="
 echo ""
 echo "  [1] Gazebo MISS2"
 echo "  [2] ArduPilot + MAVProxy"
 echo "  [3] CAM1 Downward"
 echo "  [4] CAM2 Forward"
-echo "  [5] Python Mission"
+echo "  
 echo ""
 echo "  Repo:"
 echo "  $REPO"
